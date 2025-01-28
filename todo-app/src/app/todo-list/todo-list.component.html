@@ -1,0 +1,15 @@
+<section>
+    <h1>To-Do List</h1>
+    <input [value]="newTask" (input)="onInputChange($event)" (keyup.enter)="addTask()" placeholder="Enter a task" />
+    <button class="add-btn" (click)="addTask()">Add Task</button>
+  
+    @if (tasks.length === 0) {
+      <p>No tasks yet! Add your first task above. 🎉</p>
+    } @else {
+      <ul>
+        @for (task of tasks; track task.text) {
+            <app-task-item [task]="task" (taskUpdated)="saveTasks()"></app-task-item>
+        }
+      </ul>
+    }
+</section>
